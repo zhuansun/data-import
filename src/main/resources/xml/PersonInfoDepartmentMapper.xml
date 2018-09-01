@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zspc.mapper.PersonInfoDepartmentMapper">
+  <resultMap id="BaseResultMap" type="com.zspc.entity.PersonInfoDepartment">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="ctftp" jdbcType="VARCHAR" property="ctftp" />
+    <result column="ctfid" jdbcType="VARCHAR" property="ctfid" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="zip" jdbcType="VARCHAR" property="zip" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="fax" jdbcType="VARCHAR" property="fax" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, ctftp, ctfid, gender, birthday, address, zip, mobile, tel, fax, email,
+    version
+  </sql>
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zspc.entity.PersonInfoDepartment" useGeneratedKeys="true">
+    insert into person_info_department (name, ctftp, ctfid,
+    gender, birthday, address,
+    zip, mobile, tel, fax,
+    email, version)
+    values (#{name,jdbcType=VARCHAR}, #{ctftp,jdbcType=VARCHAR}, #{ctfid,jdbcType=VARCHAR},
+    #{gender,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+    #{zip,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR},
+    #{email,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR})
+  </insert>
+
+
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into person_info_department (name, ctftp, ctfid,
+    gender, birthday, address,
+    zip, mobile, tel, fax,
+    email, version)
+    values
+    <foreach collection ="list" item="item" index= "index" separator =",">
+    (#{item.name,jdbcType=VARCHAR}, #{item.ctftp,jdbcType=VARCHAR}, #{item.ctfid,jdbcType=VARCHAR},
+    #{item.gender,jdbcType=VARCHAR}, #{item.birthday,jdbcType=VARCHAR}, #{item.address,jdbcType=VARCHAR},
+    #{item.zip,jdbcType=VARCHAR}, #{item.mobile,jdbcType=VARCHAR}, #{item.tel,jdbcType=VARCHAR}, #{item.fax,jdbcType=VARCHAR},
+    #{item.email,jdbcType=VARCHAR}, #{item.version,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+
+
+</mapper>
