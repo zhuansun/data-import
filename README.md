@@ -18,14 +18,14 @@
 
 #### 安装教程
 
-1. 配置数据库连接，jdbc.properties
-2. 自己创建数据表的mapper，entity，dao
-3. 启动程序
+- 1. 配置数据库连接，jdbc.properties
+- 2. 自己创建数据表的mapper，entity，dao
+- 3. 启动程序
 
 #### 使用说明
 
-1.启动程序
-2.使用postman模拟请求
+- 1.启动程序
+- 2.使用postman模拟请求
     ![image](1535768828856.jpg)
-3.可以再控制台查看日志
+- 3.可以再控制台查看日志
 
