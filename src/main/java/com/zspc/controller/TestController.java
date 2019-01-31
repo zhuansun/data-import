@@ -16,10 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
+import java.util.Random;
 
 /**
  * 测试专用controller
@@ -78,15 +78,65 @@ public class TestController {
 
         try {
 
-            System.out.println(upload.getName()+"---"+upload.length());
+            System.out.println(upload.getName() + "---" + upload.length());
             fileService.parsingData(upload);
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
         logger.info("okokokokokokokokokokokokokokokokokokokokokokokokokokokokokok");
-        return  "okokokokokokokokokok";
+        return "okokokokokokokokokok";
     }
+
+
+    @RequestMapping("/generate")
+    @ResponseBody
+    public String ok1(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        // 存放文件临时路径//获取文件上传的路径，在webapp下的upload中
+        String base = request.getSession().getServletContext().getRealPath("/upload/0.txt");
+
+
+        String context = null;
+
+
+        Random random= new Random();
+        List<String> userList = fileService.generateUser();
+
+        for (int i=0; i< 10;i++){
+            context = fileService.generateDate(random,userList);
+            fileService.generateFile(base, context);
+
+        }
+
+//        File file = new File(base);
+//        if (!file.exists()) {
+//            file.mkdirs();
+//        }
+//
+//        // 讲文件上传到临时目录
+//        String path = base + File.separator + sourceName;
+//        File upload = new File(path);
+//        try {
+//            files.transferTo(upload);
+//        } catch (IOException e) {
+//            return "-1";
+//        }
+//
+//
+//        try {
+//
+//            System.out.println(upload.getName()+"---"+upload.length());
+//            fileService.parsingData(upload);
+//
+//        }catch (Exception ex){
+//            ex.printStackTrace();
+//        }
+
+        logger.info("okokokokokokokokokokokokokokokokokokokokokokokokokokokokokok");
+        return "okokokokokokokokokok";
+    }
+
 
 }
