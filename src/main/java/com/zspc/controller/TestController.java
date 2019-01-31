@@ -98,11 +98,19 @@ public class TestController {
         String base = request.getSession().getServletContext().getRealPath("/upload/0.txt");
 
 
+        System.out.println("文件在："+base);
+
         String context = null;
-
-
         Random random= new Random();
         List<String> userList = fileService.generateUser();
+
+        /**
+         * 老婆，老婆。看这里，把这里的for循环10改成10万，生成的文件，就是10万行。 你可以先少生成一些。试一试
+         *
+         *
+         * 使用办法就是：使用tomcat启动，然后在浏览器输入 localhost:8080/generate. 就会自动生成了。
+         *
+         */
 
         for (int i=0; i< 10;i++){
             context = fileService.generateDate(random,userList);
